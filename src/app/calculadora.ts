@@ -16,7 +16,7 @@ function operar(operacion: string = "", a: number, b?: number) {
     }
 }
 
-function suma(a: number, b: number) { //a = 1 , b=2
+function suma(a: any, b: any) { //a = 1 , b=2
 
     if (a === undefined || b === undefined) {
         throw new Error("No se puede sumar indefinidos");
@@ -29,7 +29,7 @@ function suma(a: number, b: number) { //a = 1 , b=2
     return a + b;
 }
 
-function restar(a: number, b: number) {
+function restar(a: any, b: any) {
     if (a === undefined || b === undefined) {
 
         throw new Error("No se puede restar indefinidos");
@@ -40,10 +40,10 @@ function restar(a: number, b: number) {
     return a - b;
 }
 
-function multiplicacion(a: number, b: number) {
+function multiplicacion(a: any, b: any) {
     if (a === undefined || b === undefined) {
 
-        throw new Error("No se puede restar indefinidos");
+        throw new Error("No se puede multiplicar indefinidos");
     }
     if (typeof a !== 'number' || typeof b !== 'number') {
         return NaN;
@@ -51,7 +51,7 @@ function multiplicacion(a: number, b: number) {
     return a * b;
 }
 
-function division(a: number, b: number) {
+function division(a: any, b: any) {
     try {
         if (a === undefined || b === undefined) {
             throw new Error("No se puede dividir indefinidos");
@@ -68,7 +68,7 @@ function division(a: number, b: number) {
     }
 }
 
-function potencia(a: number, b: number) {
+function potencia(a: any, b: any) {
     if (a === undefined || b === undefined) {
         throw new Error("No se puede calcular potencia con valores indefinidos");
     }
@@ -78,7 +78,7 @@ function potencia(a: number, b: number) {
     return Math.pow(a, b);
 }
 
-function factorial(n: number): number {
+function factorial(n: any): number {
     if (n === undefined) {
         throw new Error("No se puede calcular factorial de un valor indefinido");
     }
@@ -94,5 +94,7 @@ function factorial(n: number): number {
     }
     return result;
 }
+
+
 
 export { suma, operar, restar , multiplicacion , division, potencia, factorial };

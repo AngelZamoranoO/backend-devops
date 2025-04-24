@@ -1,5 +1,5 @@
 import { describe, test } from "@jest/globals";
-import { restar, suma } from "../../src/app/calculadora";
+import { restar, suma , multiplicacion , division , potencia , factorial} from "../../src/app/calculadora";
 
 describe("Suite de test de calculadora", () => {
 
@@ -40,4 +40,106 @@ describe("Suite de test de calculadora", () => {
         a = undefined
         expect(() => { restar(a, 1) }).toThrow("No se puede restar indefinidos");
     })
+
+    test('Pruebas unitarias para la funcion multiplicacion', () => {
+        expect(multiplicacion(2, 3)).toBe(6);
+        expect(multiplicacion(2, -3)).toBe(-6);
+        expect(multiplicacion(-2, -3)).toBe(6);
+        expect(multiplicacion(5, 0)).toBe(0);
+        expect(multiplicacion(0, 0)).toBe(0);
+        expect(multiplicacion('a' as any, 5)).toBeNaN();
+        
+    });
+
+   test('División de dos números', () => {
+    expect(division(6, 3)).toBe(2);
+    expect(division(6, -3)).toBe(-2);
+    expect(division(-6, -3)).toBe(2);
+    expect(division(5, 0)).toBe("No se puede dividir por cero");
+    expect(division(0, 5)).toBe(0);
+    expect(division('a' as any, 5)).toBeNaN();
+    expect(division(5, 'b' as any)).toBeNaN();
+    expect(division('a' as any, 'b' as any)).toBeNaN();
+    });   
+});
+
+describe('Pruebas para la función potencia', () => {
+    test('Potencia de un número positivo elevado a un número positivo', () => {
+        expect(potencia(2, 3)).toBe(8); // 2^3 = 8
+    });
+
+    test('Potencia de un número positivo elevado a cero', () => {
+        expect(potencia(5, 0)).toBe(1); // 5^0 = 1
+    });
+
+    test('Potencia de cero elevado a un número positivo', () => {
+        expect(potencia(0, 5)).toBe(0); // 0^5 = 0
+    });
+
+    test('Potencia de un número negativo elevado a un número positivo', () => {
+        expect(potencia(-2, 3)).toBe(-8); // (-2)^3 = -8
+    });
+
+    test('Potencia de un número positivo elevado a un número negativo', () => {
+        expect(potencia(2, -2)).toBe(0.25); // 2^(-2) = 1/4 = 0.25
+    });
+
+    test('Potencia de un número negativo elevado a un número negativo', () => {
+        expect(potencia(-2, -2)).toBe(0.25); // (-2)^(-2) = 1/4 = 0.25
+    });
+
+
+    test('Devolver NaN si el primer argumento no es un número', () => {
+        expect(potencia('a' as any, 2)).toBeNaN();
+    });
+
+    test('Devolver NaN si el segundo argumento no es un número', () => {
+        expect(potencia(2, 'b' as any)).toBeNaN();
+    });
+
+    test('Devolver NaN si ambos argumentos no son números', () => {
+        expect(potencia('a' as any, 'b' as any)).toBeNaN();
+    });
+});
+
+describe('Pruebas para la función factorial', () => {
+    test('Factorial de 0', () => {
+        expect(factorial(0)).toBe(1); // 0! = 1
+    });
+
+    test('Factorial de 1', () => {
+        expect(factorial(1)).toBe(1); // 1! = 1
+    });
+
+    test('Factorial de un número positivo', () => {
+        expect(factorial(5)).toBe(120); // 5! = 120
+    });
+
+    test('Factorial de un número positivo mayor', () => {
+        expect(factorial(6)).toBe(720); // 6! = 720
+    });
+
+    test('Factorial de un número negativo', () => {
+        expect(factorial(-1)).toBeNaN(); // Factorial no definido para números negativos
+    });
+
+    test('Factorial de un número decimal', () => {
+        expect(factorial(2.5)).toBeNaN(); // Factorial no definido para números no enteros
+    });
+
+    test('Lanzar error si el argumento es undefined', () => {
+        expect(() => factorial(undefined)).toThrow("No se puede calcular factorial de un valor indefinido");
+    });
+
+    test('Devolver NaN si el argumento no es un número', () => {
+        expect(factorial('a' as any)).toBeNaN(); // Argumento no numérico
+    });
+
+    test('Devolver NaN si el argumento es un objeto', () => {
+        expect(factorial({} as any)).toBeNaN(); // Argumento no numérico
+    });
+
+    test('Devolver NaN si el argumento es un array', () => {
+        expect(factorial([] as any)).toBeNaN(); // Argumento no numérico
+    });
 });
